@@ -1,0 +1,25 @@
+server:
+  port: 8888
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9102/eureka/
+
+spring:
+  application:
+    name: spring-cloud-api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: microservice-produits
+          uri: lb://microservice-produits
+          predicates:
+            - Path=/product_api/**
+
+
+
+
